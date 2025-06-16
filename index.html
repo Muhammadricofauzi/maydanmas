@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Untuk May ❤️</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        overflow: hidden; /* Mencegah scroll */
+      }
+      .font-pacifico {
+        font-family: "Pacifico", cursive;
+      }
+      .content-card {
+        background-color: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        transition: all 0.5s ease-in-out;
+      }
+      .fade-in {
+        animation: fadeInAnimation 1s ease-in forwards;
+      }
+      @keyframes fadeInAnimation {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      .heart {
+        position: fixed;
+        font-size: 1.5rem;
+        color: #ff7b7b;
+        animation: fall linear forwards;
+        user-select: none;
+        pointer-events: none;
+      }
+      @keyframes fall {
+        to {
+          transform: translateY(105vh);
+          opacity: 0;
+        }
+      }
+      .pulse {
+        animation: pulseAnimation 2s infinite;
+      }
+      @keyframes pulseAnimation {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-gradient-to-br from-pink-200 via-purple-200 to-indigo-300">
+    <!-- Kontainer utama -->
+    <div id="main-container" class="min-h-screen flex items-center justify-center p-4">
+      <div id="content-card" class="content-card w-full max-w-md p-8 rounded-2xl shadow-lg text-center fade-in">
+        <!-- Konten akan di-render oleh JavaScript di sini -->
+      </div>
+    </div>
+
+    <!-- === TEMPAT MUSIK KAMU === -->
+    <!-- 1. Ganti "NAMA_FILE_MUSIKMU.mp3" dengan nama file lagumu. -->
+    <!-- 2. Pastikan file musiknya ada di folder yang sama dengan file HTML ini. -->
+    <audio id="background-music" loop>
+      <source src="Pamungkas - Monolog (Lyrics Video) - Pamungkas.mp3" type="audio/mpeg" />
+      Browser kamu tidak mendukung pemutar audio.
+    </audio>
+
+    <script>
+      // --- KONFIGURASI ---
+      const photoMas = "WhatsApp Image 2025-06-17 at 00.23.43.jpeg";
+      const photoMay1 = "WhatsApp Image 2025-06-17 at 00.23.47 (1).jpeg";
+      const photoMay2 = "WhatsApp Image 2025-06-17 at 00.23.48.jpeg";
+      const photoBerdua1 = "WhatsApp Image 2025-06-17 at 00.23.45.jpeg";
+      const photoBerdua2 = "WhatsApp Image 2025-06-17 at 00.23.42.jpeg";
+
+      // --- STATE APLIKASI ---
+      let clickCount = 0;
+
+      // --- REFERENSI ELEMEN DOM ---
+      const contentCard = document.getElementById("content-card");
+
+      // --- FUNGSI ---
+
+      function createHeart() {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+        heart.style.animationDelay = Math.random() * 2 + "s";
+        heart.innerHTML = "❤️";
+        document.body.appendChild(heart);
+        setTimeout(() => {
+          heart.remove();
+        }, 7000);
+      }
+
+      function renderContent() {
+        contentCard.classList.remove("fade-in");
+        void contentCard.offsetWidth;
+        contentCard.classList.add("fade-in");
+
+        let content = "";
+
+        switch (clickCount) {
+          case 0:
+            content = `
+                        <h1 class="font-pacifico text-3xl text-pink-600 mb-4">Hai Cantik,</h1>
+                        <p class="mb-6 text-gray-700">Aku punya sesuatu yang spesial buat kamu. Siap?</p>
+                        <button onclick="handleNextClick()" class="bg-pink-500 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-pink-600 transition-all duration-300 transform hover:scale-105 pulse">
+                            Mulai Sekarang
+                        </button>
+                    `;
+            break;
+
+          case 1:
+            content = `
+                        <h2 class="text-2xl font-bold text-gray-800 mb-2">Ini aku,</h2>
+                        <p class="mb-4 text-gray-600">Laki-laki yang selalu mengagumimu.</p>
+                        <img src="${photoMas}" alt="Foto Mas" class="w-48 h-48 mx-auto rounded-full object-cover shadow-lg mb-6 border-4 border-white">
+                        <button onclick="handleNextClick()" class="bg-pink-500 text-white font-bold py-2 px-6 rounded-full shadow-md hover:bg-pink-600 transition-all">
+                            Lanjut...
+                        </button>
+                    `;
+            break;
+
+          case 2:
+            content = `
+                        <h2 class="text-2xl font-bold text-gray-800 mb-2">Dan ini kamu,</h2>
+                        <p class="mb-4 text-gray-600">Perempuan hebat yang jadi alasanku tersenyum.</p>
+                        <img src="${photoMay1}" alt="Foto May 1" class="w-48 h-48 mx-auto rounded-full object-cover shadow-lg mb-6 border-4 border-white">
+                        <button onclick="handleNextClick()" class="bg-pink-500 text-white font-bold py-2 px-6 rounded-full shadow-md hover:bg-pink-600 transition-all">
+                            Klik lagi, sayang
+                        </button>
+                    `;
+            break;
+
+          case 3:
+            content = `
+                        <p class="text-xl text-gray-700 mb-4">Dengan semua tingkah lucumu...</p>
+                        <img src="${photoMay2}" alt="Foto May 2" class="w-full max-w-xs mx-auto rounded-xl object-cover shadow-lg mb-6 border-4 border-white">
+                        <button onclick="handleNextClick()" class="bg-pink-500 text-white font-bold py-2 px-6 rounded-full shadow-md hover:bg-pink-600 transition-all">
+                            Hehe, lanjut
+                        </button>
+                    `;
+            break;
+
+          case 4:
+            content = `
+                        <p class="text-xl text-gray-700 mb-4">Setiap momen sama kamu itu berharga.</p>
+                         <img src="${photoBerdua1}" alt="Foto Berdua" class="w-full max-w-xs mx-auto rounded-xl object-cover shadow-lg mb-6 border-4 border-white">
+                        <button onclick="handleNextClick()" class="bg-pink-500 text-white font-bold py-2 px-6 rounded-full shadow-md hover:bg-pink-600 transition-all">
+                            Sedikit lagi...
+                        </button>
+                    `;
+            break;
+
+          case 5:
+            if (window.heartInterval) clearInterval(window.heartInterval);
+            window.heartInterval = setInterval(createHeart, 400);
+
+            content = `
+                        <img src="${photoBerdua2}" alt="Foto Berdua" class="w-full h-48 object-cover rounded-t-2xl -mt-8 -mx-8">
+                        <div class="p-6">
+                            <h1 class="font-pacifico text-3xl text-pink-600 mb-4 mt-4">Untuk Selamanya...</h1>
+                            <p class="text-lg text-gray-800 font-semibold leading-relaxed">
+                                "Mas dan May akan tetap selalu menjadi satu dan berjanji akan saling menjaga satu sama lain."
+                            </p>
+                            <p class="mt-6 text-pink-500 font-bold">I Love You ❤️</p>
+                        </div>
+                    `;
+            break;
+
+          default:
+            // Fallback
+            clickCount = 0;
+            renderContent();
+            break;
+        }
+
+        contentCard.innerHTML = content;
+      }
+
+      function handleNextClick() {
+        // Saat pertama kali tombol diklik (dari state 0 ke 1)
+        if (clickCount === 0) {
+          const music = document.getElementById("background-music");
+          // Coba putar musik. Browser modern mungkin memerlukan interaksi pengguna.
+          // Klik pertama ini dihitung sebagai interaksi.
+          if (music) {
+            music.play().catch((error) => {
+              console.error("Gagal memutar musik:", error);
+              // Biarkan aplikasi berjalan tanpa musik jika gagal.
+            });
+          }
+        }
+
+        if (clickCount < 5) {
+          clickCount++;
+          renderContent();
+        }
+      }
+
+      // Memulai render pertama kali
+      window.onload = renderContent;
+    </script>
+  </body>
+</html>
